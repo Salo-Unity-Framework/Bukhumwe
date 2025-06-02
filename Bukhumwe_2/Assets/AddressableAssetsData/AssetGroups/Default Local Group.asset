@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 07c8c2739d7c1c74c848ba99270c88f4
   m_SerializeEntries:
+  - m_GUID: 00d6adb0ebf1a994bab05b8eaacabed5
+    m_Address: Assets/App/Data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0c51b3005066a38418b5ca2c0ef75395
     m_Address: Assets/App/Scenes
     m_ReadOnly: 0
