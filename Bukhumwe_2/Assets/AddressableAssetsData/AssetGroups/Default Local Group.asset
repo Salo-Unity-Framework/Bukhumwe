@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5878efa47e30f9044b9f81f51995805f
+    m_Address: Assets/App/Prefabs/EnemyBase.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5b6a5690fc9402341ab4381b128595f6
     m_Address: Assets/Salo/Infrastructure/Scenes/BootstrapScene.unity
     m_ReadOnly: 0
