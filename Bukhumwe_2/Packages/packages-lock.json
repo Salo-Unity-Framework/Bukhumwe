@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "f213ff497e4ff462a77319cf677cf20cc0860ca9"
     },
+    "com.dbrizov.naughtyattributes": {
+      "version": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8a8fa5a9659a6d63f196391c71e06c4286c8acd7"
+    },
     "com.unity.2d.animation": {
       "version": "10.2.0",
       "depth": 1,
@@ -104,7 +111,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.addressables": {
-      "version": "2.4.3",
+      "version": "2.5.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -114,7 +121,7 @@
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.unitywebrequest": "1.0.0",
-        "com.unity.scriptablebuildpipeline": "2.3.2",
+        "com.unity.scriptablebuildpipeline": "2.4.0",
         "com.unity.modules.unitywebrequestassetbundle": "1.0.0"
       },
       "url": "https://packages.unity.com"
@@ -245,7 +252,7 @@
       }
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "2.3.2",
+      "version": "2.4.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -312,13 +319,13 @@
       }
     },
     "com.vanlalhriata.salo": {
-      "version": "https://github.com/Salo-Unity-Framework/Salo.git?path=Salo/Assets/Package",
+      "version": "https://github.com/Salo-Unity-Framework/Salo.git?path=Salo/Assets/Plugins/Salo",
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.unity.addressables": "2.2.2"
+        "com.unity.addressables": "2.5.0"
       },
-      "hash": "f768c0a5a5b18305b04785b2ae605808bd0dd7c8"
+      "hash": "93b1573cfbb17ea5925816bfe56be7b6539d75a5"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
