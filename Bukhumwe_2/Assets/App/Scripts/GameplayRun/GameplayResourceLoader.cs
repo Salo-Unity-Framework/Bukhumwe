@@ -9,6 +9,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 /// </summary>
 public class GameplayResourceLoader : SceneResourceLoaderBase
 {
+    private AsyncOperationHandle<Enemy> loadedHandle; // needed for unload
+
     public override async UniTask Load()
     {
         var runRuntimeData = AppSOHolder.Instance.RunRuntimeData;
@@ -17,7 +19,6 @@ public class GameplayResourceLoader : SceneResourceLoaderBase
         if (null != runRuntimeData.LoadedEnemyPrefab) return;
 
         var enemyPrefabReference = AppSOHolder.Instance.RunConfig.EnemyPrefabReference;
-
         var handle = enemyPrefabReference.LoadAssetAsync();
         await handle.Task.AsUniTask();
 
@@ -27,13 +28,27 @@ public class GameplayResourceLoader : SceneResourceLoaderBase
             return;
         }
 
+        // Loaded successfully. Save the handle and the loaded prefab.
+        // The loaded prefab can now be Instantiated when needed.
+
+        loadedHandle = handle;
         runRuntimeData.LoadedEnemyPrefab = handle.Result;
     }
 
     public override UniTask Unload()
     {
-        AppSOHolder.Instance.RunConfig.EnemyPrefabReference.ReleaseAsset();
+        //AppSOHolder.Instance.RunConfig.EnemyPrefabReference.ReleaseAsset(); // does not work
+        AppSOHolder.Instance.RunConfig.EnemyPrefabReference.ReleaseInstance(loadedHandle); // works
+
         AppSOHolder.Instance.RunRuntimeData.LoadedEnemyPrefab = null;
         return UniTask.CompletedTask;
+    }
+
+    // Debug force release memory
+    [NaughtyAttributes.Button]
+    private void debugGCCollect()
+    {
+        System.GC.Collect();
+        Resources.UnloadUnusedAssets();
     }
 }

@@ -8,7 +8,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RunRuntimeData", menuName = "Bukhumwe/AppData/Run RuntimeData")]
 public class RunRuntimeDataSO : RuntimeDataSOBase
 {
-    public Dictionary<Collider2D, Enemy> ActiveEnemies = new();
+    private Dictionary<Collider2D, Enemy> activeEnemies;
+    public Dictionary<Collider2D, Enemy> ActiveEnemies
+    {
+        get
+        {
+            if (null == activeEnemies) activeEnemies = new();
+            return activeEnemies;
+        }
+    }
 
     [Tooltip("The Enemy prefab loaded from the Addressable asset during scene resource loading")]
     public Enemy LoadedEnemyPrefab;
