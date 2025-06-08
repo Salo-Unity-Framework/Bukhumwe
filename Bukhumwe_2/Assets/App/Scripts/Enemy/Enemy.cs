@@ -6,27 +6,31 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Collider2D hitCollider;
+    public Collider2D HitCollider => hitCollider;
 
-    protected virtual void OnEnable()
+    // Should be set on spawn by EnemySpawner
+    public float Speed;
+    public Vector3 NormalizedDirection;
+
+    private void Update()
     {
-        var runRuntimeData = AppSOHolder.Instance.RunRuntimeData;
-
-        // Register on the active enemy list
-        if (!runRuntimeData.ActiveEnemies.ContainsKey(hitCollider))
-        {
-            runRuntimeData.ActiveEnemies.Add(hitCollider, this);
-        }
+        move();
     }
 
-    protected virtual void OnDisable()
+    private void move()
     {
-        var runRuntimeData = AppSOHolder.Instance.RunRuntimeData;
-        runRuntimeData.ActiveEnemies.Remove(hitCollider);
+        // Move in Play state only
+        if (AppSOHolder.Instance.RunRuntimeData.CurrentRunState != RunState.Play) return;
+
+        transform.position += Time.deltaTime * Speed * NormalizedDirection;
     }
 
     // The enemy was hit
     public virtual void ProcessHit()
     {
+        // TODO: Death animation
+        // TODO: Destroy self
+
         RunEvents.EnemyHit(this);
     }
 }

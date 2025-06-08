@@ -18,6 +18,12 @@ public class RunRuntimeDataSO : RuntimeDataSOBase
         }
     }
 
+    [Tooltip("Screen extents set at start of gameplay scene. The viewport extents by x and y from the center")]
+    public Vector2 ViewportExtent;
+
     [Tooltip("The Enemy prefab loaded from the Addressable asset during scene resource loading")]
     public Enemy LoadedEnemyPrefab;
+
+    [Tooltip("The current gameplay run state")]
+    public RunState CurrentRunState;
 }

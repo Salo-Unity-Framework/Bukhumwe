@@ -6,15 +6,14 @@ using UnityEngine.Assertions;
 /// </summary>
 public class RunInputManager : MonoBehaviour
 {
+    [SerializeField] private RunRuntimeDataSO runRuntimeData;
+
     private Camera mainCamera;
-    private RunRuntimeDataSO runRuntimeData;
 
     private void Awake()
     {
         mainCamera = Camera.main;
         Assert.IsNotNull(mainCamera);
-
-        runRuntimeData = AppSOHolder.Instance.RunRuntimeData;
     }
 
     private void Update()
@@ -24,7 +23,7 @@ public class RunInputManager : MonoBehaviour
 
     private void checkPlayerInput()
     {
-        // TODO: Process only during valid RunState
+        if (runRuntimeData.CurrentRunState != RunState.Play) return;
 
         // Ignore if no input this frame. This works for touch too
         if (!Input.GetMouseButtonDown(0)) return;
