@@ -44,13 +44,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void spawn()
     {
-        // TODO: Use a pool a create initial objects during scene loading
-
-        var prefab = AppSOHolder.Instance.RunRuntimeData.LoadedEnemyPrefab;
         var spawnPosition = getRandomSpawnPosition();
 
-        var enemy = Instantiate(prefab, spawnPosition, Quaternion.identity);
+        var enemy = EnemyPooler.Instance.Get();
 
+        // Note: Enemy will Release itself to the pool when needed
+
+        enemy.gameObject.transform.position = spawnPosition;
         enemy.Speed = generateSpeed();
         enemy.NormalizedDirection = generateNormalizedDirection(spawnPosition);
 

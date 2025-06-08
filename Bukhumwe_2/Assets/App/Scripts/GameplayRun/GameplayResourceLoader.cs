@@ -33,6 +33,9 @@ public class GameplayResourceLoader : SceneResourceLoaderBase
 
         loadedHandle = handle;
         runRuntimeData.LoadedEnemyPrefab = handle.Result;
+
+        // Initialize and warmup the enemy pool
+        await EnemyPooler.Instance.InitializeAsync();
     }
 
     public override UniTask Unload()

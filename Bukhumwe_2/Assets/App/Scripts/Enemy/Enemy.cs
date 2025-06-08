@@ -28,9 +28,12 @@ public class Enemy : MonoBehaviour
     // The enemy was hit
     public virtual void ProcessHit()
     {
-        // TODO: Death animation
-        // TODO: Destroy self
+        // TODO: Deactivate colliders
 
         RunEvents.EnemyHit(this);
+
+        // TODO: Death animation
+
+        EnemyPooler.Instance.Release(this);
     }
 }

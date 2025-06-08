@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitCollider: {fileID: 3265241591839938616}
+  Speed: 0
+  NormalizedDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &7268934422247991256
 GameObject:
   m_ObjectHideFlags: 0
