@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2392c7777d98f468dd143f4b698966, type: 3}
   m_Name: RunConfig
   m_EditorClassIdentifier: 
+  runIntroMilliseconds: 1000
   enemyPrefabReference:
     m_AssetGUID: 5878efa47e30f9044b9f81f51995805f
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+  enemySpeedToScore: 10

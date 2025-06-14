@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public static class RunEvents
 {
@@ -23,4 +24,18 @@ public static class RunEvents
     public static event Action<Enemy> OnEnemyHit;
     public static void EnemyHit(Enemy enemy)
         => OnEnemyHit?.Invoke(enemy);
+
+    /// <summary>
+    /// Score was updated on the RunRuntimeData SO during a run
+    /// </summary>
+    public static event Action<ScoreEventArgs> OnScoreUdpated;
+    public static void ScoreUpdated(ScoreEventArgs eventArgs)
+        => OnScoreUdpated?.Invoke(eventArgs);
+
+    public struct ScoreEventArgs
+    {
+        public int scoreDelta;
+        public int updatedScore;
+        public Vector3 scorePosition;
+    }
 }

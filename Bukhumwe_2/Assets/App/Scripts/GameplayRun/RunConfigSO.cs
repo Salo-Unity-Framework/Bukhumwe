@@ -11,4 +11,8 @@ public class RunConfigSO : ConfigSOBase
     [Tooltip("The Addressable enemy prefab")]
     [SerializeField] private ComponentReferenceEnemy enemyPrefabReference;
     public ComponentReferenceEnemy EnemyPrefabReference => enemyPrefabReference;
+
+    [Tooltip("This is multiplied with an enemy's speed to get the score")]
+    [SerializeField] private float enemySpeedToScore;
+    public float EnemySpeedToScore => enemySpeedToScore;
 }

@@ -26,4 +26,7 @@ public class RunRuntimeDataSO : RuntimeDataSOBase
 
     [Tooltip("The current gameplay run state")]
     public RunState CurrentRunState;
+
+    [Tooltip("Score for current run")]
+    public int Score;
 }
