@@ -20,3 +20,5 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   enemySpeedToScore: 10
+  playerLayer: 6
+  enemyLayer: 7

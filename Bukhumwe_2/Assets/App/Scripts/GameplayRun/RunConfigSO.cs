@@ -15,4 +15,12 @@ public class RunConfigSO : ConfigSOBase
     [Tooltip("This is multiplied with an enemy's speed to get the score")]
     [SerializeField] private float enemySpeedToScore;
     public float EnemySpeedToScore => enemySpeedToScore;
+
+    [Tooltip("The player layer for easy reference")]
+    [SerializeField, NaughtyAttributes.Layer] private int playerLayer;
+    public int PlayerLayer => playerLayer;
+
+    [Tooltip("The enemy layer for easy reference")]
+    [SerializeField, NaughtyAttributes.Layer] private int enemyLayer;
+    public int EnemyLayer => enemyLayer;
 }

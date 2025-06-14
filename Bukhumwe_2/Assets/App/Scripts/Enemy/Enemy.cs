@@ -5,6 +5,9 @@ using UnityEngine;
 /// </summary>
 public class Enemy : MonoBehaviour
 {
+    // Use Rigidbody for proper collisions and triggers
+    [SerializeField] private new Rigidbody2D rigidbody;
+
     [SerializeField] private Collider2D hitCollider;
     public Collider2D HitCollider => hitCollider;
 
@@ -12,7 +15,7 @@ public class Enemy : MonoBehaviour
     public float Speed;
     public Vector3 NormalizedDirection;
 
-    private void Update()
+    private void FixedUpdate()
     {
         move();
     }
@@ -22,7 +25,8 @@ public class Enemy : MonoBehaviour
         // Move in Play state only
         if (AppSOHolder.Instance.RunRuntimeData.CurrentRunState != RunState.Play) return;
 
-        transform.position += Time.deltaTime * Speed * NormalizedDirection;
+        var newPosition = transform.position + Time.deltaTime * Speed * NormalizedDirection;
+        rigidbody.MovePosition(newPosition);
     }
 
     // The enemy was hit
@@ -32,7 +36,20 @@ public class Enemy : MonoBehaviour
 
         RunEvents.EnemyHit(this);
 
-        // TODO: Death animation
+        // TODO: Explosion animation
+
+        EnemyPooler.Instance.Release(this);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Ignore if this didn't collide with the Player base
+        if (collision.gameObject.layer != AppSOHolder.Instance.RunConfig.PlayerLayer) return;
+
+        // The enemy has hit the player base. PlayerBase
+        // will process its own trigger event.
+
+        // TODO: Explosion animation
 
         EnemyPooler.Instance.Release(this);
     }
