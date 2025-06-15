@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runRuntimeData: {fileID: 11400000, guid: 4819199793e0d3547b90779313e493f5, type: 2}
+  runConfig: {fileID: 11400000, guid: 1351a4659ba62754b98e109467c3ab94, type: 2}
 --- !u!114 &4378837120042508652
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using UnityEngine.Assertions;
 public class RunInputManager : MonoBehaviour
 {
     [SerializeField] private RunRuntimeDataSO runRuntimeData;
+    [SerializeField] private RunConfigSO runConfig;
 
     private Camera mainCamera;
 
@@ -30,13 +31,12 @@ public class RunInputManager : MonoBehaviour
         
         // Raycast at the mouse/touch position
         var mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        var raycastHit = Physics2D.Raycast(mousePosition, Vector2.zero, mainCamera.farClipPlane);
-        // TODO: Create Enemy layer, assign in RunConfig, and filter raycast
+        var colliderHit = Physics2D.OverlapPoint(mousePosition, 1 << runConfig.EnemyLayer);
 
-        if (null == raycastHit.collider) return; // No valid hit
+        if (null == colliderHit) return; // No valid hit
 
         // Check if the hit collider is a registered enemy
-        if (runRuntimeData.ActiveEnemies.TryGetValue(raycastHit.collider, out var enemy))
+        if (runRuntimeData.ActiveEnemies.TryGetValue(colliderHit, out var enemy))
         {
             // The enemy instance was hit
             enemy.ProcessHit();
