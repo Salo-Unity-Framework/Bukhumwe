@@ -14,13 +14,13 @@ public class RunManager : MonoBehaviour
     private void OnEnable()
     {
         SceneLoadEvents.OnSceneReady += handleSceneReady;
-
-        // TODO: Listen for game over
+        RunEvents.OnHealthUpdated += handleHealthUpdated;
     }
 
     private void OnDisable()
     {
         SceneLoadEvents.OnSceneReady -= handleSceneReady;
+        RunEvents.OnHealthUpdated -= handleHealthUpdated;
 
         if (Application.isPlaying) setRunState(RunState.None);
     }
@@ -44,6 +44,15 @@ public class RunManager : MonoBehaviour
         await UniTask.Delay(runConfig.RunIntroMilliseconds);
 
         setRunState(RunState.Play);
+    }
+
+    private void handleHealthUpdated(int _, int updatedHealth)
+    {
+        // Trigger player death on 0 health
+        if (updatedHealth <= 0)
+        {
+            setRunState(RunState.Outro);
+        }
     }
 
     private void setRunState(RunState newState)

@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// Part of the ScoreUI prefab, this updates the score UI
+/// Part of the GameplayUI prefab, this updates the score UI
 /// </summary>
 public class GameplayScoreUIHandler : MonoBehaviour
 {

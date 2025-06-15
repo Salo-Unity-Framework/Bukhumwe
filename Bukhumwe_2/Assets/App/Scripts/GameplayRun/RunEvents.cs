@@ -32,6 +32,14 @@ public static class RunEvents
     public static void ScoreUpdated(ScoreEventArgs eventArgs)
         => OnScoreUdpated?.Invoke(eventArgs);
 
+    /// <summary>
+    /// Player health has changed. This could be from a reset or player hit.
+    /// Parameters are <healthDelta, updatedHealth>
+    /// </summary>
+    public static event Action<int, int> OnHealthUpdated;
+    public static void HealthUpdated(int healthDelta, int updatedHealth)
+        => OnHealthUpdated?.Invoke(healthDelta, updatedHealth);
+
     public struct ScoreEventArgs
     {
         public int scoreDelta;

@@ -29,4 +29,7 @@ public class RunRuntimeDataSO : RuntimeDataSOBase
 
     [Tooltip("Score for current run")]
     public int Score;
+
+    [Tooltip("Current player health")]
+    public int CurrentPlayerHealth;
 }

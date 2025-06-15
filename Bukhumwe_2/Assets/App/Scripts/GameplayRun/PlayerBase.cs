@@ -10,11 +10,25 @@ public class PlayerBase : MonoBehaviour
     // different aspect ratios. Placing the base correctly
     // at the bottom during edit time should work.
 
+    [SerializeField] private RunConfigSO runConfig;
+    [SerializeField] private RunRuntimeDataSO runRuntimeData;
+
+    private void Start()
+    {
+        // Set starting health
+        runRuntimeData.CurrentPlayerHealth = runConfig.StartintPlayerHealth;
+        RunEvents.HealthUpdated(runConfig.StartintPlayerHealth, runRuntimeData.CurrentPlayerHealth);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Ignore if the collided object was not an Enemy
         if (collision.gameObject.layer != AppSOHolder.Instance.RunConfig.EnemyLayer) return;
 
-        // TODO: Implement player health and game over
+        // An enemy has hit the player. Enemy will handle its own trigger event
+
+        // Decrease health and trigger event
+        runRuntimeData.CurrentPlayerHealth -= runConfig.EnemyDamage;
+        RunEvents.HealthUpdated(runConfig.EnemyDamage, runRuntimeData.CurrentPlayerHealth);
     }
 }

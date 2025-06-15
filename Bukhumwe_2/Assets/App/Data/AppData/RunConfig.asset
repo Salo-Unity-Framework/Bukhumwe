@@ -22,3 +22,5 @@ MonoBehaviour:
   enemySpeedToScore: 10
   playerLayer: 6
   enemyLayer: 7
+  startingPlayerHealth: 100
+  enemyDamage: 20

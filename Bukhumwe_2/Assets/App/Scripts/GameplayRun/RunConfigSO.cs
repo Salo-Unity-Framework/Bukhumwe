@@ -23,4 +23,12 @@ public class RunConfigSO : ConfigSOBase
     [Tooltip("The enemy layer for easy reference")]
     [SerializeField, NaughtyAttributes.Layer] private int enemyLayer;
     public int EnemyLayer => enemyLayer;
+
+    [Tooltip("The health the player starts with")]
+    [SerializeField] private int startingPlayerHealth;
+    public int StartintPlayerHealth => startingPlayerHealth;
+
+    [Tooltip("The damage an enemy causes to player's health")]
+    [SerializeField] private int enemyDamage;
+    public int EnemyDamage => enemyDamage;
 }
