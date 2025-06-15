@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runRuntimeData: {fileID: 11400000, guid: 4819199793e0d3547b90779313e493f5, type: 2}
   playerStatsRuntimeData: {fileID: 11400000, guid: 8004ee2a1b9e02d4a9c258f6a2951cfc, type: 2}
+  appFlowConfig: {fileID: 11400000, guid: 3b91784841b5a034bb5fd7a2eaba6951, type: 2}
   runConfig: {fileID: 11400000, guid: 1351a4659ba62754b98e109467c3ab94, type: 2}

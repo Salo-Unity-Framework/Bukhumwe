@@ -26,6 +26,13 @@ public static class RunEvents
         => OnEnemyHit?.Invoke(enemy);
 
     /// <summary>
+    /// The enemy is now ready to be released back to the pool
+    /// </summary>
+    public static event Action<Enemy> OnEnemyReleaseReady;
+    public static void EnemyReleaseReady(Enemy enemy)
+        => OnEnemyReleaseReady?.Invoke(enemy);
+
+    /// <summary>
     /// Score was updated on the RunRuntimeData SO during a run
     /// </summary>
     public static event Action<ScoreEventArgs> OnScoreUdpated;

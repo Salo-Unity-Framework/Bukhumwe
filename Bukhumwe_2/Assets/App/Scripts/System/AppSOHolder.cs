@@ -17,6 +17,9 @@ public class AppSOHolder : StaticInstanceOf<AppSOHolder>
 
     [Header("Config")]
 
+    [SerializeField] private AppFlowConfigSO appFlowConfig;
+    public AppFlowConfigSO AppFlowConfig => appFlowConfig;
+
     [SerializeField] private RunConfigSO runConfig;
     public RunConfigSO RunConfig => runConfig;
 }

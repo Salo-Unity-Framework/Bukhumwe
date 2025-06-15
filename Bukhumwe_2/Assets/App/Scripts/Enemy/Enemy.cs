@@ -32,13 +32,8 @@ public class Enemy : MonoBehaviour
     // The enemy was hit
     public virtual void ProcessHit()
     {
-        // TODO: Deactivate colliders
-
         RunEvents.EnemyHit(this);
-
-        // TODO: Explosion animation
-
-        EnemyPooler.Instance.Release(this);
+        destroy();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,8 +44,16 @@ public class Enemy : MonoBehaviour
         // The enemy has hit the player base. PlayerBase
         // will process its own trigger event.
 
+        destroy();
+    }
+
+    private void destroy()
+    {
+        // TODO: Deactivate colliders
         // TODO: Explosion animation
 
-        EnemyPooler.Instance.Release(this);
+        // Avoiding releasing to pool here since the enemy may be spawned without
+        // a pooler. Let the spawner that used pooling handle the release.
+        RunEvents.EnemyReleaseReady(this);
     }
 }

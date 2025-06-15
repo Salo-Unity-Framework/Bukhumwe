@@ -14,11 +14,13 @@ public class EnemySpawner : MonoBehaviour
     private void OnEnable()
     {
         RunEvents.OnRunStateChanged += handleRunStateChanged;
+        RunEvents.OnEnemyReleaseReady += handleEnemyReleaseReady;
     }
 
     private void OnDisable()
     {
         RunEvents.OnRunStateChanged -= handleRunStateChanged;
+        RunEvents.OnEnemyReleaseReady -= handleEnemyReleaseReady;
     }
 
     private void Update()
@@ -55,6 +57,11 @@ public class EnemySpawner : MonoBehaviour
         enemy.NormalizedDirection = generateNormalizedDirection(spawnPosition);
 
         RunEvents.EnemySpawned(enemy);
+    }
+
+    private void handleEnemyReleaseReady(Enemy enemy)
+    {
+        EnemyPooler.Instance.Release(enemy);
     }
 
     private float generateNextSpawnInterval()
