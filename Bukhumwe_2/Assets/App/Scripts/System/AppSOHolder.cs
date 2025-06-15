@@ -12,6 +12,9 @@ public class AppSOHolder : StaticInstanceOf<AppSOHolder>
     [SerializeField] private RunRuntimeDataSO runRuntimeData;
     public RunRuntimeDataSO RunRuntimeData => runRuntimeData;
 
+    [SerializeField] private PlayerStatsRuntimeDataSO playerStatsRuntimeData;
+    public PlayerStatsRuntimeDataSO PlayerStatsRuntimeData => playerStatsRuntimeData;
+
     [Header("Config")]
 
     [SerializeField] private RunConfigSO runConfig;

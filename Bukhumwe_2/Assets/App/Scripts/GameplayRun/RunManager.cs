@@ -51,8 +51,20 @@ public class RunManager : MonoBehaviour
         // Trigger player death on 0 health
         if (updatedHealth <= 0)
         {
-            setRunState(RunState.Outro);
+            processPlayerDeath().Forget();
         }
+    }
+
+    private async UniTaskVoid processPlayerDeath()
+    {
+        setRunState(RunState.Outro);
+
+        // TODO: Player death effects
+
+        await UniTask.Delay(2000); // TODO: await for death effects instead
+
+        // Load title scene
+        SceneLoadEvents.TitleSceneLoadRequested();
     }
 
     private void setRunState(RunState newState)

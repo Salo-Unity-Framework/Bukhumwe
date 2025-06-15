@@ -1,3 +1,4 @@
+using Salo.Infrastructure;
 using UnityEngine;
 
 /// <summary>
@@ -9,11 +10,13 @@ public class GameplayScoreManager : MonoBehaviour
     private void OnEnable()
     {
         RunEvents.OnEnemyHit += handleEnemyHit;
+        RunEvents.OnRunStateChanged += handleRunStateChanged;
     }
 
     private void OnDisable()
     {
         RunEvents.OnEnemyHit -= handleEnemyHit;
+        RunEvents.OnRunStateChanged -= handleRunStateChanged;
     }
 
     private void Start()
@@ -40,5 +43,24 @@ public class GameplayScoreManager : MonoBehaviour
             updatedScore = AppSOHolder.Instance.RunRuntimeData.Score,
             scorePosition = enemy.transform.position,
         });
+    }
+
+    private void handleRunStateChanged(RunState _, RunState newState)
+    {
+        if (newState != RunState.Outro) return;
+
+        // Save scores on game over
+        var lastScore = AppSOHolder.Instance.RunRuntimeData.Score;
+        var playerStatsRuntimeData = AppSOHolder.Instance.PlayerStatsRuntimeData;
+
+        playerStatsRuntimeData.LastScore = lastScore;
+
+        if (lastScore > playerStatsRuntimeData.HighScore)
+        {
+            playerStatsRuntimeData.HighScore = lastScore;
+        }
+
+        // Persist to disk
+        playerStatsRuntimeData.Save();
     }
 }

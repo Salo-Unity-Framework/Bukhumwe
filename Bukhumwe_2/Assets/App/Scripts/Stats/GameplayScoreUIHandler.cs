@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class GameplayScoreUIHandler : MonoBehaviour
 {
-    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text scoreTextUI;
 
     private void OnEnable()
     {
@@ -20,7 +20,7 @@ public class GameplayScoreUIHandler : MonoBehaviour
 
     private void handleScoreUdpated(RunEvents.ScoreEventArgs eventArgs)
     {
-        scoreText.text = eventArgs.updatedScore.ToString();
+        scoreTextUI.text = eventArgs.updatedScore.ToString();
 
         // Spawn score indication if non-zero delta. Zero delta is for reset etc
         if (eventArgs.scoreDelta != 0)
