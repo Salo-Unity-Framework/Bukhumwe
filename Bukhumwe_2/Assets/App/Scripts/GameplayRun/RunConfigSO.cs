@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RunConfig", menuName = "Bukhumwe/AppData/Run Config")]
 public class RunConfigSO : ConfigSOBase
 {
+    [Header("Setup")]
+
     [Tooltip("Time to wait before starting gameplay")]
     [SerializeField] private int runIntroMilliseconds;
     public int RunIntroMilliseconds => runIntroMilliseconds;
@@ -11,10 +13,6 @@ public class RunConfigSO : ConfigSOBase
     [Tooltip("The Addressable enemy prefab")]
     [SerializeField] private ComponentReferenceEnemy enemyPrefabReference;
     public ComponentReferenceEnemy EnemyPrefabReference => enemyPrefabReference;
-
-    [Tooltip("This is multiplied with an enemy's speed to get the score")]
-    [SerializeField] private float enemySpeedToScore;
-    public float EnemySpeedToScore => enemySpeedToScore;
 
     [Tooltip("The player layer for easy reference")]
     [SerializeField, NaughtyAttributes.Layer] private int playerLayer;
@@ -24,6 +22,12 @@ public class RunConfigSO : ConfigSOBase
     [SerializeField, NaughtyAttributes.Layer] private int enemyLayer;
     public int EnemyLayer => enemyLayer;
 
+    [Tooltip("The difficulty profile set for the game")]
+    [SerializeField] private DifficultyProfileSO difficultyProfile;
+    public DifficultyProfileSO DifficultyProfile => difficultyProfile;
+
+    [Header("Base values")]
+
     [Tooltip("The health the player starts with")]
     [SerializeField] private int startingPlayerHealth;
     public int StartintPlayerHealth => startingPlayerHealth;
@@ -31,4 +35,8 @@ public class RunConfigSO : ConfigSOBase
     [Tooltip("The damage an enemy causes to player's health")]
     [SerializeField] private int enemyDamage;
     public int EnemyDamage => enemyDamage;
+
+    [Tooltip("This is multiplied with an enemy's speed to get the score")]
+    [SerializeField] private float enemySpeedToScore;
+    public float EnemySpeedToScore => enemySpeedToScore;
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 /// <summary>
@@ -5,6 +6,9 @@ using UnityEngine;
 /// </summary>
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private RunConfigSO runConfig;
+    [SerializeField] private RunRuntimeDataSO runRuntimeData;
+
     private bool isPlaying = false; // will spawn while playing only
     private float lastSpawnTime;
 
@@ -66,10 +70,23 @@ public class EnemySpawner : MonoBehaviour
 
     private float generateNextSpawnInterval()
     {
-        // TODO: Random around a value
-        // TODO: Decrease as time increases
+        var difficultyProfile = runConfig.DifficultyProfile;
 
-        return 2f;
+        // The time on a scale of 0 to 1 in terms of spawn difficulty
+        var timeFraction = (Time.time - runRuntimeData.StartTime) / difficultyProfile.SpawnIntervalMaxDiffSeconds;
+
+        // Get the interval based on current time (timeFraction) and difficulty profile
+        var interval = DOVirtual.EasedValue(
+            difficultyProfile.SpawnIntervalAtStartSeconds,
+            difficultyProfile.SpawnIntervalAtEndSeconds,
+            timeFraction,
+            difficultyProfile.SpawnIntervalCurve);
+
+        // Random around a value. Eg: interval of 2 with sigma factor of 0.3
+        var randomMultiplier = Random.Range(1 - difficultyProfile.SpawnIntervalSigma, 1 + difficultyProfile.SpawnIntervalSigma); // [0.7, 1.3]
+        interval = interval * randomMultiplier; // [1.4, 2.6]
+
+        return interval;
     }
 
     private Vector3 getRandomSpawnPosition()
@@ -90,7 +107,7 @@ public class EnemySpawner : MonoBehaviour
         // TODO: Random around a value
         // TODO: Increase as time increases
 
-        return 1f;
+        return 3f;
     }
 
     private Vector3 generateNormalizedDirection(Vector3 spawnPosition)

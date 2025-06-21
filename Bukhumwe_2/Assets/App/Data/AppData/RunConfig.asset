@@ -19,8 +19,9 @@ MonoBehaviour:
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  enemySpeedToScore: 10
   playerLayer: 6
   enemyLayer: 7
   startingPlayerHealth: 100
   enemyDamage: 20
+  enemySpeedToScore: 10
+  difficultyProfile: {fileID: 11400000, guid: 2030269da657dd74e9f5866172ac988b, type: 2}

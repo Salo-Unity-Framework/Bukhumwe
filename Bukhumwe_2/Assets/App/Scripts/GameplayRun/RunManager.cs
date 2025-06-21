@@ -43,6 +43,7 @@ public class RunManager : MonoBehaviour
         // Wait before starting gameplay
         await UniTask.Delay(runConfig.RunIntroMilliseconds);
 
+        runRuntimeData.StartTime = Time.time;
         setRunState(RunState.Play);
     }
 

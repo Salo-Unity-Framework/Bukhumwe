@@ -32,4 +32,7 @@ public class RunRuntimeDataSO : RuntimeDataSOBase
 
     [Tooltip("Current player health")]
     public int CurrentPlayerHealth;
+
+    [Tooltip("Current run start time in game time")]
+    public float StartTime;
 }
