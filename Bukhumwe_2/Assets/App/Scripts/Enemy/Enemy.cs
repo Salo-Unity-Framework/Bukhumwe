@@ -11,9 +11,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Collider2D hitCollider;
     public Collider2D HitCollider => hitCollider;
 
+    [SerializeField] private Transform visuals;
+
     // Should be set on spawn by EnemySpawner
     public float Speed;
     public Vector3 NormalizedDirection;
+
+    private void Start()
+    {
+        // Rotate visuals so flames face along the direction of travel
+        visuals.up = -NormalizedDirection;
+    }
 
     private void FixedUpdate()
     {

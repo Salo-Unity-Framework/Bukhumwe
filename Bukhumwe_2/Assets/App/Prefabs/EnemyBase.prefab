@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 7901465422295272332}
   hitCollider: {fileID: 3265241591839938616}
+  visuals: {fileID: 6644501353062053215}
   Speed: 0
   NormalizedDirection: {x: 0, y: 0, z: 0}
 --- !u!50 &7901465422295272332
@@ -108,6 +109,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7399014691370279645}
+  - {fileID: 5218125336246371983}
   m_Father: {fileID: 6806823333074970772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &3265241591839938616
@@ -156,6 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7399014691370279645}
   - component: {fileID: 7708647251849789592}
+  - component: {fileID: 5548183209736505354}
   m_Layer: 7
   m_Name: Asteroid 64
   m_TagString: Untagged
@@ -233,3 +236,65 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5548183209736505354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052254311816588615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56603852d4f0c97448c9dfaa991a9e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &5111029422790193400
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6644501353062053215}
+    m_Modifications:
+    - target: {fileID: 935408347839168025, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+      propertyPath: m_Name
+      value: FlameAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046109956640929399, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046109956640929399, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046109956640929399, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046109956640929399, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046109956640929399, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046109956640929399, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046109956640929399, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+--- !u!4 &5218125336246371983 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1046109956640929399, guid: c6a781b466eee7b4cbafb50534994d2d, type: 3}
+  m_PrefabInstance: {fileID: 5111029422790193400}
+  m_PrefabAsset: {fileID: 0}
