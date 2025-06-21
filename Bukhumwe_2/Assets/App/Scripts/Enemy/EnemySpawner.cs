@@ -74,6 +74,7 @@ public class EnemySpawner : MonoBehaviour
 
         // The time on a scale of 0 to 1 in terms of spawn difficulty
         var timeFraction = (Time.time - runRuntimeData.StartTime) / difficultyProfile.SpawnIntervalMaxDiffSeconds;
+        timeFraction = Mathf.Clamp01(timeFraction);
 
         // Get the interval based on current time (timeFraction) and difficulty profile
         var interval = DOVirtual.EasedValue(
@@ -104,10 +105,36 @@ public class EnemySpawner : MonoBehaviour
 
     private float generateSpeed()
     {
-        // TODO: Random around a value
-        // TODO: Increase as time increases
+        var difficultyProfile = runConfig.DifficultyProfile;
 
-        return 3f;
+        // The time on a scale of 0 to 1 in terms of speed difficulty.
+        // Note that this can go above 1 to keep increasing speed.
+        var timeFraction = (Time.time - runRuntimeData.StartTime) / difficultyProfile.SpeedMaxDiffSeconds;
+
+        float speed = 0;
+
+        if (timeFraction <= 1)
+        {
+            // Get the speed based on current time (timeFraction) and difficulty profile
+            // up to the max difficulty time using the provided difficulty curve.
+            speed = DOVirtual.EasedValue(
+                difficultyProfile.SpeedAtStartSeconds,
+                difficultyProfile.SpeedAtEndSeconds,
+                timeFraction,
+                difficultyProfile.SpeedCurve);
+        }
+        else
+        {
+            // Afther the max difficulty time, keep increasing speed linearly
+            speed = difficultyProfile.SpeedAtStartSeconds
+                + timeFraction * (difficultyProfile.SpeedAtEndSeconds - difficultyProfile.SpeedAtStartSeconds);
+        }
+
+        // Random around a value. Eg: interval of 2 with sigma factor of 0.3
+        var randomMultiplier = Random.Range(1 - difficultyProfile.SpeedSigma, 1 + difficultyProfile.SpeedSigma); // [0.7, 1.3]
+        speed = speed * randomMultiplier; // [1.4, 2.6]
+
+        return speed;
     }
 
     private Vector3 generateNormalizedDirection(Vector3 spawnPosition)

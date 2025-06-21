@@ -30,4 +30,27 @@ public class DifficultyProfileSO : ScriptableObject
         "spawn interval of 2 between 1.4 and 2.6 (0.3 * 2 on both sides of 2)")]
     [SerializeField] private float spawnIntervalSigma;
     public float SpawnIntervalSigma => spawnIntervalSigma;
+
+    [Header("Enemy speed")]
+
+    [Tooltip("The base enemy speed at the start of the game")]
+    [SerializeField] private float speedAtStartSeconds;
+    public float SpeedAtStartSeconds => speedAtStartSeconds;
+
+    [Tooltip("The enemy speed at maximum difficulty")]
+    [SerializeField] private float speedAtEndSeconds;
+    public float SpeedAtEndSeconds => speedAtEndSeconds;
+
+    [Tooltip("The run time at which speed will reach maximum difficulty")]
+    [SerializeField] private float speedMaxDiffSeconds;
+    public float SpeedMaxDiffSeconds => speedMaxDiffSeconds;
+
+    [Tooltip("The curve at which to increase speed difficulty")]
+    [SerializeField] private AnimationCurve speedCurve;
+    public AnimationCurve SpeedCurve => speedCurve;
+
+    [Tooltip("Factor to randomize speed. Eg: Value of 0.3 will randomize " +
+        "speed of 2 between 1.4 and 2.6 (0.3 * 2 on both sides of 2)")]
+    [SerializeField] private float speedSigma;
+    public float SpeedSigma => speedSigma;
 }
