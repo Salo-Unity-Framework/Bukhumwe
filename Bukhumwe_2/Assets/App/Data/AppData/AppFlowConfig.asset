@@ -19,3 +19,5 @@ MonoBehaviour:
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   gameplayLoadDelayMilliseconds: 3000
+  sceneFadeOutSeconds: 0.8
+  sceneFadeInSeconds: 0.8
