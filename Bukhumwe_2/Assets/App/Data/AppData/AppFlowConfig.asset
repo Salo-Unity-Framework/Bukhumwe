@@ -18,4 +18,4 @@ MonoBehaviour:
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  gameplayLoadDelayMilliseconds: 1000
+  gameplayLoadDelayMilliseconds: 3000

@@ -52,9 +52,9 @@ public class EnemySpawner : MonoBehaviour
     {
         var spawnPosition = getRandomSpawnPosition();
 
-        var enemy = EnemyPooler.Instance.Get();
+        var enemy = EnemyPooler.Instance.Get(); // enemy.Reset() is called by the pooler
 
-        // Note: Enemy will Release itself to the pool when needed
+        // Note: Enemy will be Released on RunEvents.OnEnemyReleaseReady handler here
 
         enemy.gameObject.transform.position = spawnPosition;
         enemy.Speed = generateSpeed();

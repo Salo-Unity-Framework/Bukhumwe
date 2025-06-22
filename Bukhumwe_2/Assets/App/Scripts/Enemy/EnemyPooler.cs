@@ -43,7 +43,7 @@ public class EnemyPooler : StaticInstanceOf<EnemyPooler>
     private void getEnemy(Enemy enemy)
     {
         enemy.gameObject.SetActive(true);
-        // TODO: Enable colliders if needed
+        enemy.Reset();
     }
 
     private void releaseEnemy(Enemy enemy)

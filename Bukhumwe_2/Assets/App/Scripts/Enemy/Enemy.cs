@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
@@ -5,6 +6,8 @@ using UnityEngine;
 /// </summary>
 public class Enemy : MonoBehaviour
 {
+    [Header("References")]
+
     // Use Rigidbody for proper collisions and triggers
     [SerializeField] private new Rigidbody2D rigidbody;
 
@@ -12,6 +15,10 @@ public class Enemy : MonoBehaviour
     public Collider2D HitCollider => hitCollider;
 
     [SerializeField] private Transform visuals;
+    [SerializeField] private GameObject aliveVisuals;
+    [SerializeField] private GameObject deathVisuals;
+
+    [Header("Runtime data")]
 
     // Should be set on spawn by EnemySpawner
     public float Speed;
@@ -28,6 +35,11 @@ public class Enemy : MonoBehaviour
         move();
     }
 
+    public void Reset()
+    {
+        toggleVisualsAndCollider(isAlive: true);
+    }
+
     private void move()
     {
         // Move in Play state only
@@ -41,7 +53,7 @@ public class Enemy : MonoBehaviour
     public virtual void ProcessHit()
     {
         RunEvents.EnemyHit(this);
-        destroy();
+        destroy().Forget();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,13 +64,24 @@ public class Enemy : MonoBehaviour
         // The enemy has hit the player base. PlayerBase
         // will process its own trigger event.
 
-        destroy();
+        destroy().Forget();
     }
 
-    private void destroy()
+    private void toggleVisualsAndCollider(bool isAlive)
     {
-        // TODO: Deactivate colliders
-        // TODO: Explosion animation
+        hitCollider.enabled |= isAlive;
+        aliveVisuals.SetActive(isAlive);
+        deathVisuals.SetActive(!isAlive);
+    }
+
+    private async UniTaskVoid destroy()
+    {
+        toggleVisualsAndCollider(isAlive: false);
+
+        // HACK: Hard code the wait time. This should be the explosion animation time
+        await UniTask.Delay(420);
+
+        deathVisuals.SetActive(false);
 
         // Avoiding releasing to pool here since the enemy may be spawned without
         // a pooler. Let the spawner that used pooling handle the release.
