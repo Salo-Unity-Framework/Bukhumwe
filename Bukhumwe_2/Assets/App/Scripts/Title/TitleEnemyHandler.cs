@@ -76,5 +76,9 @@ public class TitleEnemyHandler : MonoBehaviour
 
         // Since there is only one enemy on the title scene, assume it was the one hit
         instantiatedEnemy.ProcessHit();
+
+        // Easy static call without needing an AudioSource since this is a one time call. Note that
+        // this creates and destroys an object - it should not be used for frequent calls.
+        AudioSource.PlayClipAtPoint(runConfig.EnemyHitClip, mainCamera.transform.position);
     }
 }

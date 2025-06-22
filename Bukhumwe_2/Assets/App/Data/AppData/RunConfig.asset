@@ -21,7 +21,10 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   playerLayer: 6
   enemyLayer: 7
+  difficultyProfile: {fileID: 11400000, guid: 2030269da657dd74e9f5866172ac988b, type: 2}
   startingPlayerHealth: 100
   enemyDamage: 20
   enemySpeedToScore: 10
-  difficultyProfile: {fileID: 11400000, guid: 2030269da657dd74e9f5866172ac988b, type: 2}
+  enemyHitClip: {fileID: 8300000, guid: 59330140216373a49b923c61cb52e364, type: 3}
+  playerHitClip: {fileID: 8300000, guid: 992b36c32a8daef4b8e756b0d87ce7c3, type: 3}
+  gameOverClip: {fileID: 8300000, guid: 343005f8e893d7d4eabff8fe24ec1937, type: 3}

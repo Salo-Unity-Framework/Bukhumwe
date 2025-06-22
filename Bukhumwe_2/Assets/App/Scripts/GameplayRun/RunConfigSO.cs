@@ -39,4 +39,18 @@ public class RunConfigSO : ConfigSOBase
     [Tooltip("This is multiplied with an enemy's speed to get the score")]
     [SerializeField] private float enemySpeedToScore;
     public float EnemySpeedToScore => enemySpeedToScore;
+
+    [Header("Audio")]
+
+    [Tooltip("The SFX to play on enemy hit")]
+    [SerializeField] private AudioClip enemyHitClip;
+    public AudioClip EnemyHitClip => enemyHitClip;
+
+    [Tooltip("The SFX to play on plyer hit")]
+    [SerializeField] private AudioClip playerHitClip;
+    public AudioClip PlayerHitClip => playerHitClip;
+
+    [Tooltip("The SFX to play on game over")]
+    [SerializeField] private AudioClip gameOverClip;
+    public AudioClip GameOverClip => gameOverClip;
 }
