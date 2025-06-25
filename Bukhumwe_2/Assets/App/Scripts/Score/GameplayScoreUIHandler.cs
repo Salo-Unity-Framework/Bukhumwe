@@ -1,8 +1,10 @@
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
 /// <summary>
 /// Part of the GameplayUI prefab, this updates the score UI
+/// and spawns score popups
 /// </summary>
 public class GameplayScoreUIHandler : MonoBehaviour
 {
@@ -25,12 +27,17 @@ public class GameplayScoreUIHandler : MonoBehaviour
         // Spawn score indication if non-zero delta. Zero delta is for reset etc
         if (eventArgs.scoreDelta != 0)
         {
-            spawnScoreIndicator(eventArgs.scoreDelta, eventArgs.scorePosition);
+            spawnScoreIndicator(eventArgs.scoreDelta, eventArgs.scorePosition).Forget();
         }
     }
 
-    private void spawnScoreIndicator(int scoreDelta, Vector3 scorePosition)
+    private async UniTaskVoid spawnScoreIndicator(int scoreDelta, Vector3 scorePosition)
     {
-        // TODO
+        var scorePopup = ScorePopupPooler.Instance.Get();
+
+        await scorePopup.Show(scoreDelta, scorePosition);
+
+        // Release back to pool after it finishes animating
+        ScorePopupPooler.Instance.Release(scorePopup);
     }
 }

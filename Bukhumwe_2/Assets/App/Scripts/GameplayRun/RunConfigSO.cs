@@ -18,6 +18,10 @@ public class RunConfigSO : ConfigSOBase
     [SerializeField] private ComponentReferenceEnemy enemyPrefabReference;
     public ComponentReferenceEnemy EnemyPrefabReference => enemyPrefabReference;
 
+    [Tooltip("THe Addressable ScorepPopup prefab")]
+    [SerializeField] private ComponentReferenceScorePopup scorePopupReference;
+    public ComponentReferenceScorePopup ScorePopupReference => scorePopupReference;
+
     [Tooltip("The player layer for easy reference")]
     [SerializeField, NaughtyAttributes.Layer] private int playerLayer;
     public int PlayerLayer => playerLayer;

@@ -1,10 +1,10 @@
 using UnityEngine;
 
 /// <summary>
-/// Part of the GameplayRun prefab, this listens to
-/// run events and handles SFX and score popups
+/// Part of the GameplayRun prefab, this listens
+/// to run events and handles SFX
 /// </summary>
-public class RunFXManager : MonoBehaviour
+public class RunSfxManager : MonoBehaviour
 {
     [SerializeField] private RunConfigSO runConfig;
 
@@ -22,9 +22,7 @@ public class RunFXManager : MonoBehaviour
 
     private void handleEnemyHit(Enemy enemy)
     {
-        SfxPlayer.Instance.PlayOneShot(runConfig.EnemyHitClip); // Play SFX
-
-        // TODO: Score popup
+        SfxPlayer.Instance.PlayOneShot(runConfig.EnemyHitClip);
     }
 
     private void handleHealthUpdated(int _, int __)

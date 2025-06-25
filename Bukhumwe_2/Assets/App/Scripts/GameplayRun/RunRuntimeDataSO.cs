@@ -24,6 +24,9 @@ public class RunRuntimeDataSO : RuntimeDataSOBase
     [Tooltip("The Enemy prefab loaded from the Addressable asset during scene resource loading")]
     public Enemy LoadedEnemyPrefab;
 
+    [Tooltip("The ScorePopup prefab loaded from the Addressable asset during scene resource loading")]
+    public ScorePopup LoadedScorePopupPrefab;
+
     [Tooltip("The current gameplay run state")]
     public RunState CurrentRunState;
 

@@ -20,6 +20,12 @@ MonoBehaviour:
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+  scorePopupReference:
+    m_AssetGUID: ef30ea366d3d9b241925d30c55e8eee5
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
   playerLayer: 6
   enemyLayer: 7
   difficultyProfile: {fileID: 11400000, guid: 2030269da657dd74e9f5866172ac988b, type: 2}
