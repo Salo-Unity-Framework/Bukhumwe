@@ -10,6 +10,10 @@ public class RunConfigSO : ConfigSOBase
     [SerializeField] private int runIntroMilliseconds;
     public int RunIntroMilliseconds => runIntroMilliseconds;
 
+    [Tooltip("Time to wait on game over before starting game over effects")]
+    [SerializeField] private int gameOverPauseMilliseconds;
+    public int GameOverPauseMilliseconds => gameOverPauseMilliseconds;
+
     [Tooltip("The Addressable enemy prefab")]
     [SerializeField] private ComponentReferenceEnemy enemyPrefabReference;
     public ComponentReferenceEnemy EnemyPrefabReference => enemyPrefabReference;

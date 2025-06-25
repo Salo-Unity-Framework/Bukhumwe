@@ -10,13 +10,13 @@ public class GameplayScoreManager : MonoBehaviour
     private void OnEnable()
     {
         RunEvents.OnEnemyHit += handleEnemyHit;
-        RunEvents.OnRunStateChanged += handleRunStateChanged;
+        RunEvents.OnPlayerDeath += handlePlayerDeath;
     }
 
     private void OnDisable()
     {
         RunEvents.OnEnemyHit -= handleEnemyHit;
-        RunEvents.OnRunStateChanged -= handleRunStateChanged;
+        RunEvents.OnPlayerDeath -= handlePlayerDeath;
     }
 
     private void Start()
@@ -45,10 +45,8 @@ public class GameplayScoreManager : MonoBehaviour
         });
     }
 
-    private void handleRunStateChanged(RunState _, RunState newState)
+    private void handlePlayerDeath()
     {
-        if (newState != RunState.Outro) return;
-
         // Save scores on game over
         var lastScore = AppSOHolder.Instance.RunRuntimeData.Score;
         var playerStatsRuntimeData = AppSOHolder.Instance.PlayerStatsRuntimeData;

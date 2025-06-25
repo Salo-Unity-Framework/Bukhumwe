@@ -69,14 +69,14 @@ public class Enemy : MonoBehaviour
 
     private void toggleVisualsAndCollider(bool isAlive)
     {
-        hitCollider.enabled |= isAlive;
+        hitCollider.enabled = isAlive;
         aliveVisuals.SetActive(isAlive);
         deathVisuals.SetActive(!isAlive);
     }
 
     private async UniTaskVoid destroy()
     {
-        toggleVisualsAndCollider(isAlive: false);
+        toggleVisualsAndCollider(isAlive: false); // wil enable and start explosion animation
 
         // HACK: Hard code the wait time. This should be the explosion animation time
         await UniTask.Delay(420);

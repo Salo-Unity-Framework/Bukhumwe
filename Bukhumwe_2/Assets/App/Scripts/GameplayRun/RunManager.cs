@@ -59,12 +59,12 @@ public class RunManager : MonoBehaviour
     private async UniTaskVoid processPlayerDeath()
     {
         setRunState(RunState.Outro);
+        RunEvents.PlayerDeath();
 
-        // TODO: Player death effects
+        await PlayerDeathHandler.Instance.HandlePlayerDeathAsync();
 
-        await UniTask.Delay(2000); // TODO: await for death effects instead
-
-        // Load title scene
+        // Load title scene after a small delay
+        await UniTask.Delay(500);
         SceneLoadEvents.TitleSceneLoadRequested();
     }
 

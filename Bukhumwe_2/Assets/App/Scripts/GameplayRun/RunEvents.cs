@@ -47,6 +47,13 @@ public static class RunEvents
     public static void HealthUpdated(int healthDelta, int updatedHealth)
         => OnHealthUpdated?.Invoke(healthDelta, updatedHealth);
 
+    /// <summary>
+    /// The Player has died. This is similar to checking for Outro state
+    /// </summary>
+    public static event Action OnPlayerDeath;
+    public static void PlayerDeath()
+        => OnPlayerDeath?.Invoke();
+
     public struct ScoreEventArgs
     {
         public int scoreDelta;

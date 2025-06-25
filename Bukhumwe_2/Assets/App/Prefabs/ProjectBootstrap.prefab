@@ -162,7 +162,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3129112604191179841, guid: ef5ed3b1ae6198e4f87fb19293a770ee, type: 3}
       propertyPath: m_Name
-      value: Background
+      value: PersistentVisuals
       objectReference: {fileID: 0}
     - target: {fileID: 5297346948500266260, guid: ef5ed3b1ae6198e4f87fb19293a770ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
