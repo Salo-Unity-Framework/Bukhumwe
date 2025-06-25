@@ -24,9 +24,11 @@ public class TitleFlowManager : MonoBehaviour
 
         var appFlowConfig = AppSOHolder.Instance.AppFlowConfig;
 
-        // Load the gameplayScene after a delay to wait for effects
-        await UniTask.Delay(appFlowConfig.GameplayLoadDelayMilliseconds);
+        // Animate the title
+        await BukhumweController.Instance.PlayGameStartAsync();
 
+        // Load the gameplayScene a little after the start effects completes
+        await UniTask.Delay(250);
         SceneLoadEvents.MajorSceneLoadRequested(appFlowConfig.GameplayScene);
     }
 }

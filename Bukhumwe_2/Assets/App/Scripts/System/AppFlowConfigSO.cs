@@ -8,10 +8,6 @@ public class AppFlowConfigSO : ScriptableObject
     [SerializeField] private SceneReference gameplayScene;
     public SceneReference GameplayScene => gameplayScene;
 
-    [Tooltip("Time to wait after click to load the gameplay scene")]
-    [SerializeField] private int gameplayLoadDelayMilliseconds;
-    public int GameplayLoadDelayMilliseconds => gameplayLoadDelayMilliseconds;
-
     [Tooltip("Scene fade out duration")]
     [SerializeField] private float sceneFadeOutSeconds;
     public float SceneFadeOutSeconds => sceneFadeOutSeconds;

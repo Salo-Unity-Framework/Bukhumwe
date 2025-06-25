@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a88cb5f7920dc449475c13208cd146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bukhumweText: {fileID: 1267753237285731940}
   buStatic: {fileID: 2435137404926148397}
   buAnimated: {fileID: 672303549019210027}
   khuStatic: {fileID: 3499672609217958004}
@@ -61,7 +62,6 @@ MonoBehaviour:
   mweAnimated1: {fileID: 8224989873098716717}
   mweAnimated2: {fileID: 661968068343455450}
   mweAnimated3: {fileID: 1767254714323121400}
-  temp: {fileID: 0}
 --- !u!1 &1568563144565207449
 GameObject:
   m_ObjectHideFlags: 0

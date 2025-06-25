@@ -10,6 +10,9 @@ using UnityEngine;
 /// </summary>
 public class BukhumweController : StaticInstanceOf<BukhumweController>
 {
+    [SerializeField] private TMP_Text bukhumweText; // Complete text
+
+    // Animated texts will grow and fade over static ones
     [SerializeField] private GameObject buStatic;
     [SerializeField] private TMP_Text buAnimated;
     [SerializeField] private GameObject khuStatic;
@@ -19,16 +22,20 @@ public class BukhumweController : StaticInstanceOf<BukhumweController>
     [SerializeField] private TMP_Text mweAnimated2;
     [SerializeField] private TMP_Text mweAnimated3;
 
-    private void hide()
+    private void Start()
     {
-        buStatic.SetActive(false);
-        buAnimated.gameObject.SetActive(false);
-        khuStatic.SetActive(false);
-        khuAnimated.gameObject.SetActive(false);
-        mweStatic.SetActive(false);
-        mweAnimated1.gameObject.SetActive(false);
-        mweAnimated2.gameObject.SetActive(false);
-        mweAnimated3.gameObject.SetActive(false);
+        bukhumweText.gameObject.SetActive(true);
+    }
+
+    // Called by TitleFlowManager
+    public async UniTask PlayGameStartAsync()
+    {
+        _ = bukhumweText.DOFade(0, 0.3f);
+
+        await bukhumweText.transform.DOScale(2f, 1f)
+            .SetEase(Ease.OutCubic);
+
+        bukhumweText.gameObject.SetActive(false);
     }
 
     // Called by PlayerDeathHandler
@@ -44,7 +51,7 @@ public class BukhumweController : StaticInstanceOf<BukhumweController>
         await UniTask.Delay(170);
 
         // KHU
-        khuStatic?.SetActive(true);
+        khuStatic.SetActive(true);
         khuAnimated.gameObject.SetActive(true);
         _ = khuAnimated.DOFade(0, 0.6f).From(1f);
         _ = khuAnimated.transform.DOScale(1.6f, 0.6f).From(1f)
@@ -53,7 +60,7 @@ public class BukhumweController : StaticInstanceOf<BukhumweController>
         await UniTask.Delay(150);
 
         // MWE1
-        mweStatic?.SetActive(true);
+        mweStatic.SetActive(true);
         mweAnimated1.gameObject.SetActive(true);
         _ = mweAnimated1.DOFade(0, 0.6f).From(1f);
         _ = mweAnimated1.transform.DOScale(1.6f, 0.6f).From(1f)
@@ -74,6 +81,28 @@ public class BukhumweController : StaticInstanceOf<BukhumweController>
         _ = mweAnimated3.DOFade(0, 0.6f).From(1f);
         _ = mweAnimated3.transform.DOScale(1.4f, 1f).From(1f)
             .SetEase(Ease.OutCubic);
+
+        // At the end, set only the full text active
+        // so it can be animated on game start.
+        buStatic.SetActive(false);
+        khuStatic.SetActive(false);
+        mweStatic.SetActive(false);
+
+        bukhumweText.gameObject.SetActive(true);
+        bukhumweText.transform.localScale = Vector3.one;
+        bukhumweText.alpha = 1f;
+    }
+
+    private void hide()
+    {
+        buStatic.SetActive(false);
+        buAnimated.gameObject.SetActive(false);
+        khuStatic.SetActive(false);
+        khuAnimated.gameObject.SetActive(false);
+        mweStatic.SetActive(false);
+        mweAnimated1.gameObject.SetActive(false);
+        mweAnimated2.gameObject.SetActive(false);
+        mweAnimated3.gameObject.SetActive(false);
     }
 
     [NaughtyAttributes.Button]
