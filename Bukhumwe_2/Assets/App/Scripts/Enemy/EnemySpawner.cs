@@ -34,7 +34,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void handleRunStateChanged(RunState _, RunState newState)
     {
-        isPlaying = (newState == RunState.Play);
+        isPlaying = (newState == RunState.Play); // Toggle spawn
+    }
+
+    private void handleEnemyReleaseReady(Enemy enemy)
+    {
+        EnemyPooler.Instance.Release(enemy);
     }
 
     private void tryToSpawn()
@@ -61,11 +66,6 @@ public class EnemySpawner : MonoBehaviour
         enemy.NormalizedDirection = generateNormalizedDirection(spawnPosition);
 
         RunEvents.EnemySpawned(enemy);
-    }
-
-    private void handleEnemyReleaseReady(Enemy enemy)
-    {
-        EnemyPooler.Instance.Release(enemy);
     }
 
     private float generateNextSpawnInterval()

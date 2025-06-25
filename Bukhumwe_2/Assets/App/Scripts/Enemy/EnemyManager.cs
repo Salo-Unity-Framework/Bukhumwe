@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -5,31 +7,48 @@ using UnityEngine;
 /// </summary>
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private RunRuntimeDataSO runtimeData;
+    [SerializeField] private RunRuntimeDataSO runRuntimeData;
 
     private void OnEnable()
     {
         RunEvents.OnEnemySpawned += handleEnemySpawned;
-        RunEvents.OnEnemyHit += handleEnemyHit;
+        RunEvents.OnEnemyReleaseReady += handleEnemyReleaseReady;
+        RunEvents.OnPlayerDeath += handlePlayerDeath;
     }
 
     private void OnDisable()
     {
         RunEvents.OnEnemySpawned -= handleEnemySpawned;
-        RunEvents.OnEnemyHit -= handleEnemyHit;
+        RunEvents.OnEnemyReleaseReady -= handleEnemyReleaseReady;
+        RunEvents.OnPlayerDeath -= handlePlayerDeath;
     }
 
     private void handleEnemySpawned(Enemy enemy)
     {
-        if (!runtimeData.ActiveEnemies.ContainsKey(enemy.HitCollider))
+        // Add to active enemy list, making sure it's not already there
+        if (!runRuntimeData.ActiveEnemies.ContainsKey(enemy.HitCollider))
         {
-            runtimeData.ActiveEnemies.Add(enemy.HitCollider, enemy);
+            runRuntimeData.ActiveEnemies.Add(enemy.HitCollider, enemy);
         }
     }
 
-    private void handleEnemyHit(Enemy enemy)
+    private void handleEnemyReleaseReady(Enemy enemy)
     {
-        // Enemies die in one hit
-        runtimeData.ActiveEnemies.Remove(enemy.HitCollider);
+        // Remove a released enemy from the list. Note that this occurs some
+        // time after the enemy is hit. Colliders should be disabled when
+        // the enemy is hit since it is not removed from the list then.
+        runRuntimeData.ActiveEnemies.Remove(enemy.HitCollider);
+    }
+
+    private async void handlePlayerDeath()
+    {
+        // Release enemies on player death when the death animations start.
+        // Using ToList() since ActiveEnemies will be modified in the loop.
+        await UniTask.Delay(AppSOHolder.Instance.RunConfig.GameOverPauseMilliseconds);
+        foreach (var enemy in runRuntimeData.ActiveEnemies.Values.ToList())
+        {
+            // Invoke the event instead of directly releasing so other systems can handle the event
+            RunEvents.EnemyReleaseReady(enemy);
+        }
     }
 }

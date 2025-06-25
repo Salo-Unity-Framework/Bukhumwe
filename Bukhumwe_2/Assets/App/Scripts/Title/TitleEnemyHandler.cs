@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Salo.Infrastructure;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -50,8 +51,11 @@ public class TitleEnemyHandler : MonoBehaviour
     {
         Assert.IsNotNull(loadedEnemyPrefab);
 
-        // Instantiate the loaded enemy
+        // Instantiate the loaded enemy and animate it in
         instantiatedEnemy = Instantiate(loadedEnemyPrefab);
+        instantiatedEnemy.transform.DOScale(1, 1f)
+            .From(0).SetEase(Ease.InCubic);
+
         shouldCheckPlayerInput = true;
     }
 

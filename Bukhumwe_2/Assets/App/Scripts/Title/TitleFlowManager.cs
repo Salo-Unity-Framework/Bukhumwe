@@ -10,12 +10,19 @@ public class TitleFlowManager : MonoBehaviour
 {
     private void OnEnable()
     {
+        SceneLoadEvents.OnSceneReady += handleSceneReady;
         RunEvents.OnEnemyHit += handleEnemyHit;
     }
 
     private void OnDisable()
     {
+        SceneLoadEvents.OnSceneReady -= handleSceneReady;
         RunEvents.OnEnemyHit -= handleEnemyHit;
+    }
+
+    private void handleSceneReady()
+    {
+        BukhumweController.Instance.ShowTitle();
     }
 
     private async void handleEnemyHit(Enemy _)

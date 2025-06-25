@@ -22,12 +22,13 @@ public class BukhumweController : StaticInstanceOf<BukhumweController>
     [SerializeField] private TMP_Text mweAnimated2;
     [SerializeField] private TMP_Text mweAnimated3;
 
-    private void Start()
+    // Called by TitleFlowManager. Animate the title in
+    public void ShowTitle()
     {
         bukhumweText.gameObject.SetActive(true);
     }
 
-    // Called by TitleFlowManager
+    // Called by TitleFlowManager. Animate the title out
     public async UniTask PlayGameStartAsync()
     {
         _ = bukhumweText.DOFade(0, 0.3f);
