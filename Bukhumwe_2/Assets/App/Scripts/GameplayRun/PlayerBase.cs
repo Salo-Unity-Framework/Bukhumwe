@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 /// <summary>
@@ -12,6 +13,23 @@ public class PlayerBase : MonoBehaviour
 
     [SerializeField] private RunConfigSO runConfig;
     [SerializeField] private RunRuntimeDataSO runRuntimeData;
+
+    [SerializeField] private Transform visuals;
+
+    private readonly Vector3 HIT_SHAKE_STRENGTH = new Vector3(0.1f, 0.02f, 0);
+    private const float HIT_SHAKE_SECONDS = 0.1f;
+
+    private const float ANIMATION_SECONDS = 1f;
+
+    private void OnEnable()
+    {
+        RunEvents.OnRunStateChanged += handleRunStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        RunEvents.OnRunStateChanged -= handleRunStateChanged;
+    }
 
     private void Start()
     {
@@ -30,5 +48,30 @@ public class PlayerBase : MonoBehaviour
         // Decrease health and trigger event
         runRuntimeData.CurrentPlayerHealth -= runConfig.EnemyDamage;
         RunEvents.HealthUpdated(runConfig.EnemyDamage, runRuntimeData.CurrentPlayerHealth);
+
+        visuals.DOShakePosition(HIT_SHAKE_SECONDS, HIT_SHAKE_STRENGTH, 200, 180);
+    }
+
+    private void handleRunStateChanged(RunState _, RunState newState)
+    {
+        switch (newState)
+        {
+            case RunState.Intro:
+
+                // Ascend into view on Intro
+                visuals.DOLocalMoveY(0, ANIMATION_SECONDS)
+                    .From(-1f).SetEase(Ease.OutCubic);
+
+                break;
+
+            case RunState.Outro:
+
+                // Descend out of view on game over after the delay
+                visuals.DOLocalMoveY(-1f, ANIMATION_SECONDS)
+                    .SetEase(Ease.Linear)
+                    .SetDelay(runConfig.GameOverPauseMilliseconds / 1000f);
+
+                break;
+        }
     }
 }

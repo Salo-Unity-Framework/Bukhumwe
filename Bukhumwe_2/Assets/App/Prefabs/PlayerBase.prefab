@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runConfig: {fileID: 11400000, guid: 1351a4659ba62754b98e109467c3ab94, type: 2}
   runRuntimeData: {fileID: 11400000, guid: 4819199793e0d3547b90779313e493f5, type: 2}
+  visuals: {fileID: 7768066090417475666}
 --- !u!61 &7923715770232120789
 BoxCollider2D:
   m_ObjectHideFlags: 0
