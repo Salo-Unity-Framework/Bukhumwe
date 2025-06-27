@@ -15,7 +15,7 @@ public class ScorePopupPooler : StaticInstanceOf<ScorePopupPooler>
     // if the last instantiations took too long. This ensures framerate
     // remains smooth without prolonging loading.
     private float currentBatchStartTime;
-    private const float BATCH_SECONDS = 0.005f; // 5ms
+    private const float BATCH_SECONDS = 0.040f; // 40ms batches for 25fps minimum
 
     private const int DEFAULT_CAPACITY = 10;
 
