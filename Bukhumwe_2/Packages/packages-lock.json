@@ -325,7 +325,7 @@
       "dependencies": {
         "com.unity.addressables": "2.5.0"
       },
-      "hash": "7f7293260ddb530e0ab971e3a5e993b858927a77"
+      "hash": "fc29f7aaa18d4d2f0b4895701a1340331f9dc071"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

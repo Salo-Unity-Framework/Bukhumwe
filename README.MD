@@ -8,7 +8,8 @@ Bukhumwe is a super-short fast-paced click fest game where you try to score as h
 
 This project is an example implementation of the Salo Unity framework. In practice, the framework is not recommended for a small project like this and some of the framework feature usages may seem overkill, but they are meant as showcases.
 
-Link to the Salo manual: https://www.notion.so/Salo-Manual-1d15eb3be3278058876cd7eb3bf055b4
+([Link to the Salo manual](https://www.notion.so/Salo-Manual-1d15eb3be3278058876cd7eb3bf055b4))
+([Link to the Salo Github repository](https://github.com/Salo-Unity-Framework/Salo))
 
 Here are some highlights of the features in use:
 
@@ -22,6 +23,8 @@ Here are some highlights of the features in use:
 This eliminates the need for `DontDestroyOnLoad`s and Singletons.
 
 Additionally on the Editor, these systems are always available whether you Editor-Play the title scene or the gameplay scene - the framework simulates build behaviour by loading in `BootstrapScene` first. You don't need to play through the game just to play your current scene with the correct setup.
+
+Technically, the bootstrapped scene system is the only part of the framework that's non-optional. Everything else is just either something that is available because the framework uses it, or are established patterns in use.
 
 ### Runtime data
 ScriptableObject assets derived from the framework's `RuntimeDataSOBase` class are used to pass data around among multiple components. These assets are in the `Assets/App/Data/AppData` folder.
@@ -97,7 +100,12 @@ The script overrides the `FadeOut` method to implement a fade out to black. To i
 # License
 This example project is licensed under the MIT License. You're free to copy, modify, and use the code as long as you include the license.
 
-Note: This project depends on the Salo Unity package, which is **not included** and is subject to a separate license. To access or use the package, please contact: vanlalhriata@gmail.com.
+---
+
+# Attributions
+
+The font used in the game is [**Theleah Fat Font**](https://tinyworlds.itch.io/free-pixel-font-thaleah) by Rick Hoppmann ([CC BY 4.0](http://creativecommons.org/licenses/by/4.0/))
 
 ---
+
 Fun fact: The sound that asteroids make when they explode in space is "BU-KHU-MWE".
